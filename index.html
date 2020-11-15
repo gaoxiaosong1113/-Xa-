@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,minimum-scale=1,maximum-scale=1,wxc-user-scalable=no,initial-scale=1" />
+    <title>新启航 心Xa代</title>
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            /* Center slide text vertically */
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function (designWidth, maxWidth) {
+            var doc = document,
+                win = window;
+            var docEl = doc.documentElement;
+            var metaEl,
+                metaElCon;
+            var styleText,
+                remStyle = document.createElement("style");
+            var tid;
+
+            function refreshRem() {
+                // var width = parseInt(window.screen.width); // uc有bug
+                var width = docEl.getBoundingClientRect().width;
+                if (!maxWidth) {
+                    maxWidth = 540;
+                };
+                if (width > maxWidth) { // 淘宝做法：限制在540的屏幕下，这样100%就跟10rem不一样了
+                    width = maxWidth;
+                }
+                var rem = width * 100 / designWidth;
+                // var rem = width / 10; // 如果要兼容vw的话分成10份 淘宝做法
+                //docEl.style.fontSize = rem + "px"; //旧的做法，在uc浏览器下面会有切换横竖屏时定义了font-size的标签不起作用的bug
+                remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+            }
+
+            // 设置 viewport ，有的话修改 没有的话设置
+            metaEl = doc.querySelector('meta[name="viewport"]');
+            // 20171219修改：增加 viewport-fit=cover ，用于适配iphoneX
+            metaElCon = "width=device-width,initial-scale=1,maximum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover";
+            if (metaEl) {
+                metaEl.setAttribute("content", metaElCon);
+            } else {
+                metaEl = doc.createElement("meta");
+                metaEl.setAttribute("name", "viewport");
+                metaEl.setAttribute("content", metaElCon);
+                if (docEl.firstElementChild) {
+                    docEl.firstElementChild.appendChild(metaEl);
+                } else {
+                    var wrap = doc.createElement("div");
+                    wrap.appendChild(metaEl);
+                    doc.write(wrap.innerHTML);
+                    wrap = null;
+                }
+            }
+
+            //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+            refreshRem();
+
+            if (docEl.firstElementChild) {
+                docEl.firstElementChild.appendChild(remStyle);
+            } else {
+                var wrap = doc.createElement("div");
+                wrap.appendChild(remStyle);
+                doc.write(wrap.innerHTML);
+                wrap = null;
+            }
+
+            win.addEventListener("resize", function () {
+                clearTimeout(tid); //防止执行两次
+                tid = setTimeout(refreshRem, 300);
+            }, false);
+
+            win.addEventListener("pageshow", function (e) {
+                if (e.persisted) { // 浏览器后退的时候重新计算
+                    clearTimeout(tid);
+                    tid = setTimeout(refreshRem, 300);
+                }
+            }, false);
+
+            if (doc.readyState === "complete") {
+                doc.body.style.fontSize = "16px";
+                // document.documentElement.style.fontSize = "16px";
+            } else {
+                doc.addEventListener("DOMContentLoaded", function (e) {
+                    doc.body.style.fontSize = "16px";
+                    // document.documentElement.style.fontSize = "16px";
+                }, false);
+            }
+        })(750, 750);
+    </script>
+</head>
+
+<body>
+    <audio src="./video/video.mp3" id="music" autoplay="autoplay"></audio>
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide page1">
+                <div class="logo">
+                    <img class="logo1" src="./images/LOGO.png" alt="">
+                    <img class="logo2" src="./images/LOGO-2.png" alt="">
+                </div>
+                <div class="dt"><img src="./images/dt.png" alt=""></div>
+
+                <div class="title"><img src="./images/title.png" alt=""></div>
+            </div>
+            <div class="swiper-slide page2">
+                <div class="logo">
+                    <img class="logo1" src="./images/LOGO.png" alt="">
+                    <img class="logo2" src="./images/LOGO-2.png" alt="">
+                </div>
+                <div class="dt2"><img src="./images/dt2.png" alt=""></div>
+                <div class="title top"><img src="./images/title.png" alt=""></div>
+                <img src="./images/xmjj.png" class="xmjj" alt="">
+                <img src="./images/xmnr.png" class="xmnr" alt="">
+            </div>
+            <div class="swiper-slide page3">
+                <div class="logo">
+                    <img class="logo1" src="./images/LOGO.png" alt="">
+                    <img class="logo2" src="./images/LOGO-2.png" alt="">
+                </div>
+                <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+                <div class="title top"><img src="./images/title.png" alt=""></div>
+                <div class="cell cell-3">
+                    <img class="u1 alertImg" data-index="1" src="./images/u1.png" alt="">
+                    <img class="u2 alertImg" data-index="2" src="./images/u2.png" alt="">
+                </div>
+                <div class="cell">
+                    <img class="u3 alertImg" data-index="3" src="./images/u3.png" alt="">
+                    <img class="u4 alertImg" data-index="4" src="./images/u4.png" alt="">
+                    <img class="u5 alertImg" data-index="5" src="./images/u5.png" alt="">
+                    <img class="u6 alertImg" data-index="6" src="./images/u6.png" alt="">
+                </div>
+                <img class="ryrc" src="./images/ryrc.png" alt="">
+                <img class="rctable" src="./images/rctable.png" alt="">
+            </div>
+            <div class="swiper-slide page4">
+                <div class="logo">
+                    <img class="logo1" src="./images/LOGO.png" alt="">
+                    <img class="logo2" src="./images/LOGO-2.png" alt="">
+                </div>
+                <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+                <div class="title top"><img src="./images/title.png" alt=""></div>
+                <img class="title-4" src="./images/title-4.png" alt="">
+                <div class="a-cell start">
+                    <img class="a-1 alertImg" data-index="10" src="./images/a1.png" alt="">
+                </div>
+                <div class="a-cell end">
+                    <img class="a-2 alertImg" data-index="7" src="./images/a2.png" alt="">
+                </div>
+                <div class="a-cell start">
+                    <img class="a-3 alertImg" data-index="8" src="./images/a3.png" alt="">
+                </div>
+                <div class="a-cell end">
+                    <img class="a-4 alertImg" data-index="9" src="./images/a4.png" alt="">
+                </div>
+                <img src="./images/arraw.png" alt="" class="arraw">
+            </div>
+            <div class="swiper-slide page5">
+                <div class="logo">
+                    <img class="logo1" src="./images/LOGO.png" alt="">
+                    <img class="logo2" src="./images/LOGO-2.png" alt="">
+                </div>
+                <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+                <div class="title top"><img src="./images/title.png" alt=""></div>
+                <img class="title-5" src="./images/title-5.png" alt="">
+                <div class="a-cell start">
+                    <img class="a-1 alertImg" data-index="11" src="./images/b1.png" alt="">
+                </div>
+                <div class="a-cell end">
+                    <img class="a-2 alertImg" data-index="12" src="./images/b2.png" alt="">
+                </div>
+                <div class="a-cell start">
+                    <img class="a-3 alertImg" data-index="13" src="./images/b3.png" alt="">
+                </div>
+                <div class="a-cell end">
+                    <img class="a-4 alertImg" data-index="14" src="./images/b4.png" alt="">
+                </div>
+                <div class="a-cell start">
+                    <img class="a-5 alertImg" data-index="15" src="./images/b5.png" alt="">
+                </div>
+                <img src="./images/arraw.png" alt="" class="arraw">
+            </div>
+            <div class="swiper-slide page6">
+                <div class="logo">
+                    <img class="logo1" src="./images/LOGO.png" alt="">
+                    <img class="logo2" src="./images/LOGO-2.png" alt="">
+                </div>
+                <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+                <div class="title top"><img src="./images/title.png" alt=""></div>
+                <img class="title-6" src="./images/title-6.png" alt="">
+                <div class="a-cell start">
+                    <img class="c-1 alertImg" data-index="18" src="./images/c1.png" alt="">
+                </div>
+                <div class="a-cell end">
+                    <img class="c-2 alertImg" data-index="19" src="./images/c2.png" alt="">
+                </div>
+                <div class="a-cell start">
+                    <img class="c-3 alertImg" data-index="20" src="./images/c3.png" alt="">
+                </div>
+                <div class="a-cell end">
+                    <img class="c-4 alertImg" data-index="16" src="./images/c4.png" alt="">
+                </div>
+                <div class="a-cell start">
+                    <img class="c-5 alertImg" data-index="17" src="./images/c5.png" alt="">
+                </div>
+                <img src="./images/arraw.png" alt="" class="arraw">
+            </div>
+            <div class="swiper-slide page7">
+                <div class="logo">
+                    <img class="logo1" src="./images/LOGO.png" alt="">
+                    <img class="logo2" src="./images/LOGO-2.png" alt="">
+                </div>
+                <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+                <div class="title top"><img src="./images/title.png" alt=""></div>
+                <img class="title-7" src="./images/title-7.png" alt="">
+                <div class="a-cell start">
+                    <img class="d-1 alertImg" data-index="21" src="./images/d1.png" alt="">
+                </div>
+                <div class="a-cell end">
+                    <img class="d-2 alertImg" data-index="22" src="./images/d2.png" alt="">
+                </div>
+                <img src="./images/arraw.png" alt="" class="arraw">
+            </div>
+            <div class="swiper-slide page8">
+                <div class="logo">
+                    <img class="logo1" src="./images/LOGO.png" alt="">
+                    <img class="logo2" src="./images/LOGO-2.png" alt="">
+                </div>
+                <div class="dt"><img src="./images/dt.png" alt=""></div>
+                <div class="title top"><img src="./images/title.png" alt=""></div>
+                <img src="./images/qd.png" class="qd" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="msg msg1">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p1.png" class="title" alt="" />
+        <img src="images/p1c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg2">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p2.png" class="title" alt="" />
+        <img src="images/p2c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg3">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p3.png" class="title" alt="" />
+        <img src="images/p3c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg4">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p4.png" class="title" alt="" />
+        <img src="images/p4c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg5">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p5.png" class="title" alt="" />
+        <img src="images/p5c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg6">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p6.png" class="title" alt="" />
+        <img src="images/p6c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg7">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p7.png" class="title" alt="" />
+        <img src="images/p7c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg8">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p8.png" class="title" alt="" />
+        <img src="images/p8c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg9">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p9.png" class="title" alt="" />
+        <img src="images/p9c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg10">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p10.png" class="title" alt="" />
+        <img src="images/p10c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg11">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p11.png" class="title" alt="" />
+        <img src="images/p11c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg12">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p12.png" class="title" alt="" />
+        <img src="images/p12c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg13">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p13.png" class="title" alt="" />
+        <img src="images/p13c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg14">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p14.png" class="title" alt="" />
+        <img src="images/p14c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg15">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p15.png" class="title" alt="" />
+        <img src="images/p15c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg16">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p16.png" class="title" alt="" />
+        <img src="images/p16c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg17">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p17.png" class="title" alt="" />
+        <img src="images/p17c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg18">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p18.png" class="title" alt="" />
+        <img src="images/p18c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg19">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p19.png" class="title" alt="" />
+        <img src="images/p19c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg20">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p20.png" class="title" alt="" />
+        <img src="images/p20c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg21">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p21.png" class="title" alt="" />
+        <img src="images/p21c.png" class="content" alt="" />
+    </div>
+    <div class="msg msg22">
+        <div class="logo">
+            <img class="logo1" src="./images/LOGO.png" alt="">
+            <img class="logo2" src="./images/LOGO-2.png" alt="">
+        </div>
+        <div class="dt3"><img src="./images/dt2.png" alt=""></div>
+        <img src="images/p22.png" class="title" alt="" />
+        <img src="images/p22c.png" class="content" alt="" />
+    </div>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script>
+        $(function () {
+            var audio = document.getElementById("music");
+            $("#btn").bind("touchstart", function bf() {
+                if (audio !== null) {
+                    //检测播放是否已暂停.audio.paused 在播放器播放时返回false.
+                    //alert(audio.paused);
+                    if (audio.paused) {
+                        audio.play(); //audio.play();// 这个就是播放
+                        $("#btn").addClass("active")
+                    } else {
+                        audio.pause(); // 这个就是暂停
+                        $("#btn").removeClass("active")
+                    }
+                }
+            })
+
+
+            document.addEventListener('DOMContentLoaded', function () {
+                function audioAutoPlay() {
+                    audio.play();
+                    document.addEventListener("WeixinJSBridgeReady", function () {
+                        audio.play();
+                    }, false);
+                }
+                audioAutoPlay();
+            });
+
+            $("html").one('touchend', function () {
+                audio.play();
+            })
+
+            var swiper = new Swiper('.swiper-container', {
+                direction: 'vertical',
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+            $(".alertImg").on('click', function () {
+                var index = $(this).attr('data-index')
+                $(".msg" + index).show()
+
+            })
+            $('.msg').on('click', function () {
+                $(this).hide()
+            })
+
+        })
+    </script>
+</body>
+
+</html>
